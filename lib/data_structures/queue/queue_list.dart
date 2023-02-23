@@ -30,4 +30,21 @@ class QueueList<Element> implements QueueInterface<Element> {
 
     return _list.first;
   }
+
+  @override
+  String toString() => _list.toString();
+}
+
+void main() {
+  final queue = QueueList<String>();
+  queue.enqueue("R");
+  print(queue);
+  queue.enqueue("B");
+  print(queue);
+  queue.enqueue("E");
+  print(queue);
+  queue.enqueue("W");
+  print(queue);
+  queue.dequeue();
+  print(queue);
 }
