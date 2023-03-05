@@ -3,6 +3,7 @@ class LinkedList<Element> extends Iterable<Element>
   _Node<Element>? _head;
   _Node<Element>? _tail;
   _Node<Element>? _iteratorPointer;
+
   LinkedList()
       : _head = null,
         _tail = null;
