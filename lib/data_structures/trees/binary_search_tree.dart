@@ -1,13 +1,10 @@
+import 'base_tree.dart';
 import 'binary_tree_node.dart';
 
-class BinarySearchTree<Element extends Comparable<Element>> {
-  BinaryTreeNode<Element>? root;
-
-  void add(Element value) {
-    root = _insertAt(root, value);
-  }
-
-  BinaryTreeNode<Element> _insertAt(
+class BinarySearchTree<Element extends Comparable<Element>>
+    extends BaseTree<Element, BinaryTreeNode<Element>> {
+  @override
+  BinaryTreeNode<Element> insertAt(
     BinaryTreeNode<Element>? node,
     Element value,
   ) {
@@ -16,19 +13,16 @@ class BinarySearchTree<Element extends Comparable<Element>> {
     }
 
     if (value.compareTo(node.value) > 0) {
-      node.leftChild = _insertAt(node.leftChild, value);
+      node.leftChild = insertAt(node.leftChild, value);
     } else {
-      node.rightChild = _insertAt(node.rightChild, value);
+      node.rightChild = insertAt(node.rightChild, value);
     }
 
     return node;
   }
 
-  bool contains(Element value) {
-    return _contains(value, root);
-  }
-
-  bool _contains(Element value, BinaryTreeNode<Element>? node) {
+  @override
+  bool overridableContains(Element value, BinaryTreeNode<Element>? node) {
     if (node == null) {
       return false;
     }
@@ -40,19 +34,16 @@ class BinarySearchTree<Element extends Comparable<Element>> {
     bool result = false;
 
     if (value.compareTo(node.value) > 0) {
-      result = result || _contains(value, node.leftChild);
+      result = result || overridableContains(value, node.leftChild);
     } else {
-      result = result || _contains(value, node.rightChild);
+      result = result || overridableContains(value, node.rightChild);
     }
 
     return result;
   }
 
-  void remove(Element value) {
-    root = _remove(root, value);
-  }
-
-  BinaryTreeNode<Element>? _remove(
+  @override
+  BinaryTreeNode<Element>? overridableRemove(
     BinaryTreeNode<Element>? node,
     Element value,
   ) {
@@ -74,11 +65,11 @@ class BinarySearchTree<Element extends Comparable<Element>> {
       }
 
       node.value = node.rightChild!.min.value;
-      node.rightChild = _remove(node.rightChild, node.value);
+      node.rightChild = overridableRemove(node.rightChild, node.value);
     } else if (value.compareTo(node.value) > 0) {
-      node.leftChild = _remove(node.leftChild, value);
+      node.leftChild = overridableRemove(node.leftChild, value);
     } else {
-      node.rightChild = _remove(node.rightChild, value);
+      node.rightChild = overridableRemove(node.rightChild, value);
     }
 
     return node;
