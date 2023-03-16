@@ -115,7 +115,8 @@ class BinaryTreeNode<Element>
   }
 
   static BinaryTreeNode<Element>? deserializeFromList<Element>(
-      List<Element?> serializedList) {
+    List<Element?> serializedList,
+  ) {
     if (serializedList.isEmpty) return null;
     final value = serializedList.removeAt(0);
     if (value == null) return null;
@@ -124,29 +125,40 @@ class BinaryTreeNode<Element>
     node.rightChild = deserializeFromList(serializedList);
     return node;
   }
+
+  bool isBinarySearchTree() {
+    final rightChildComparable = rightChild?.value as Comparable<Element>?;
+    final leftChildComparable = leftChild?.value as Comparable<Element>?;
+
+    var isBiggerThanLeft = (leftChildComparable?.compareTo(value) ?? -1) < 0;
+    var isSmallerThanRight = (rightChildComparable?.compareTo(value) ?? 1) > 0;
+
+    if (!isSmallerThanRight || !isBiggerThanLeft) {
+      return false;
+    } else {
+      final leftResult = leftChild?.isBinarySearchTree() ?? true;
+      final rightResult = rightChild?.isBinarySearchTree() ?? true;
+
+      return leftResult && rightResult;
+    }
+  }
 }
 
 void main() {
-  final zero = BinaryTreeNode.leaf(0);
-  final one = BinaryTreeNode.leaf(1);
-  final five = BinaryTreeNode.leaf(5);
-  final seven = BinaryTreeNode.leaf(7);
-  final eight = BinaryTreeNode.leaf(8);
-  final nine = BinaryTreeNode.leaf(9);
-  seven.leftChild = one;
-  one.leftChild = zero;
-  one.rightChild = five;
+  final zero = BinaryTreeNode<num>.leaf(0);
+  final one = BinaryTreeNode<num>.leaf(1);
+  final five = BinaryTreeNode<num>.leaf(5);
+  final seven = BinaryTreeNode<num>.leaf(7);
+  final eight = BinaryTreeNode<num>.leaf(8);
+  final nine = BinaryTreeNode<num>.leaf(9);
+  seven.leftChild = five;
+  five.leftChild = zero;
+  five.leftChild = one;
   seven.rightChild = nine;
   nine.leftChild = eight;
 
   final tree = seven;
 
   print(tree);
-  print('_________________');
-  final serialized = tree.serializeToList();
-  print(serialized);
-  print('_________________');
-  final deserialized = BinaryTreeNode.deserializeFromList(serialized);
-  print(deserialized);
-  print('_________________');
+  print(tree.isBinarySearchTree());
 }

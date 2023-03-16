@@ -24,6 +24,7 @@ abstract class _BaseTreeNode<Element> {
   List<int> get childrenHeights;
   int get height;
   bool get hasChildren;
+  bool get isLeaf => height == 0;
 }
 
 /// [Element] is the element type of the tree
