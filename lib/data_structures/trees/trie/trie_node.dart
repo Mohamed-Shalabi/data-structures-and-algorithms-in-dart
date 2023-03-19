@@ -3,7 +3,7 @@ class TrieNode<Key> {
 
   Key? key;
   TrieNode<Key>? parent;
- 
+
   final children = <Key, TrieNode<Key>>{};
   bool isTerminating = false;
 }

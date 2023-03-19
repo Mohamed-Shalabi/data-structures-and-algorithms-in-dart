@@ -1,4 +1,4 @@
-import 'base_tree.dart';
+import '../base/base_tree.dart';
 import 'binary_tree_node.dart';
 
 class BinarySearchTree<Element extends Comparable<Element>>

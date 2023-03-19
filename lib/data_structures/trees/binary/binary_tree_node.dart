@@ -1,4 +1,4 @@
-import 'base_tree_node.dart';
+import '../base/base_tree_node.dart';
 
 class BinaryTreeNode<Element>
     extends BaseTreeNode<Element, BinaryTreeNode<Element>> {

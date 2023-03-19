@@ -4,7 +4,7 @@ import 'dart:math' as math;
 
 import 'package:meta/meta.dart';
 
-import '../queue/queue_list.dart';
+import '../../queue/queue_list.dart';
 
 typedef ElementAction<Element> = void Function(Element element);
 

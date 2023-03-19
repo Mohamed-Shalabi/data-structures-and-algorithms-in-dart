@@ -1,5 +1,5 @@
-import 'package:dart_dsa/data_structures/trees/trie.dart';
-import 'package:dart_dsa/data_structures/trees/trie_node.dart';
+import 'package:dart_dsa/data_structures/trees/trie/trie.dart';
+import 'package:dart_dsa/data_structures/trees/trie/trie_node.dart';
 
 class StringTrie extends Trie<Iterable<int>, int> {
   void insertString(String text) {
