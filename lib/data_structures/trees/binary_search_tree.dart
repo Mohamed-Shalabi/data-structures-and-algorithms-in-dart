@@ -81,7 +81,7 @@ class BinarySearchTree<Element extends Comparable<Element>>
   }
 }
 
-extension _MinFinder<Element> on BinaryTreeNode<Element> {
+extension<Element extends Comparable<Element>> on BinaryTreeNode<Element> {
   BinaryTreeNode<Element> get min => leftChild?.min ?? this;
 }
 

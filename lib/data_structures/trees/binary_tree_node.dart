@@ -6,6 +6,7 @@ class BinaryTreeNode<Element>
   BinaryTreeNode<Element>? rightChild;
 
   BinaryTreeNode.leaf(super.value);
+
   BinaryTreeNode.withChildren(
     super.value, {
     this.leftChild,
