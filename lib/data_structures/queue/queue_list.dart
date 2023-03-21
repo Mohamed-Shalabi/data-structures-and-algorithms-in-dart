@@ -25,7 +25,7 @@ class QueueList<Element> implements QueueInterface<Element> {
   @override
   Element get peek {
     if (isEmpty) {
-      throw PeakingEmptyQueueException();
+      throw PeekingEmptyQueueException();
     }
 
     return _list.first;

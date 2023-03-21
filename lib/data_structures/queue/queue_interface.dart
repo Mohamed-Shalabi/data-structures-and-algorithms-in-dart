@@ -10,8 +10,8 @@ abstract class QueueException with Exception {
   final String message;
 }
 
-class PeakingEmptyQueueException extends QueueException {
-  PeakingEmptyQueueException(): super('tried to peak an empty queue');
+class PeekingEmptyQueueException extends QueueException {
+  PeekingEmptyQueueException(): super('tried to peak an empty queue');
 }
 
 class DequeuingEmptyQueueException extends QueueException {
