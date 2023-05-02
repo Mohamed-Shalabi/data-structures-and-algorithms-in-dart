@@ -140,7 +140,7 @@ extension BaseTreeNodeTraversal<Element,
   }
 
   void _forEachNodeLevelFirst(NodeAction<Element, Node> action) {
-    final queue = QueueList<Node>();
+    final queue = QueueListImpl<Node>();
 
     while (!queue.isEmpty) {
       final node = queue.dequeue();

@@ -1,7 +1,7 @@
 import 'package:dart_dsa/data_structures/queue/queue_interface.dart';
 
-class QueueList<Element> implements QueueInterface<Element> {
-  QueueList() : _list = [];
+class QueueListImpl<Element> implements QueueInterface<Element> {
+  QueueListImpl() : _list = [];
   final List<Element> _list;
 
   @override
@@ -36,7 +36,7 @@ class QueueList<Element> implements QueueInterface<Element> {
 }
 
 void main() {
-  final queue = QueueList<String>();
+  final queue = QueueListImpl<String>();
   queue.enqueue("R");
   print(queue);
   queue.enqueue("B");
