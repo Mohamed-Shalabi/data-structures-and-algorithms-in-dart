@@ -63,4 +63,30 @@ class Dijkstra<Element> {
 
     return paths;
   }
+
+  List<Vertex<Element>> shortestPathTo(
+    Vertex<Element> source,
+    Vertex<Element> destination, {
+    Map<Vertex<Element>, VertexDistance<Element>?>? paths,
+  }) {
+    final allPaths = paths ?? shortestPathsOf(source);
+    if (!allPaths.containsKey(destination)) {
+      return [];
+    }
+
+    var current = destination;
+    final path = [current];
+
+    while (current != source) {
+      final previous = allPaths[current]?.vertex;
+      if (previous == null) {
+        return [];
+      }
+
+      path.add(previous);
+      current = previous;
+    }
+
+    return path.reversed.toList();
+  }
 }
